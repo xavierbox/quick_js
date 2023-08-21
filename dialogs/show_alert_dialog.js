@@ -1,5 +1,9 @@
 
 
+function add( a,b ){
+	
+	alert('adding a + b' ); 
+}
 
 function show_alert_dioalog( message = 'Default message' ){
 	alert( message + 'ddddd');

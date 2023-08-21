@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> {{data[ 'title'] }}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--
+    <script src="https://raw.githubusercontent.com/xavierbox/quick_js/main/qjs_dialogs.js"</script>
+    -->
+
+   <script src="https://cdn.jsdelivr.net/gh/xavierbox/quick_js/dialogs/show_alert_dialog.js"></script>
+
+
+</head>
+
+
+
+<body>
+
+<button id ='alert_button'> alert ! </button>
+
+
+<button id ='aa'> alert ! </button>
+
+
+<script>
+
+ 
+
+document.getElementById('alert_button').addEventListener("click", (evt) =>
+{
+	show_alert_dioalog('This js is served from github with a typo in the funcion --name!');
+});
+
+document.getElementById('aa').addEventListener('click', (evt) =>{
+alert('here')
+show_dialog_info('Data upload', 'The dataset was successfully uploaded','Ok');
+});
+
+
+
+</script>
+
+</body>
+
+</html>
