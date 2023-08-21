@@ -2,7 +2,7 @@
 
 
 function show_alert_dioalog( message = 'Default message' ){
-	alert( message );
+	alert( message + 'ddddd');
 }
 
 function show_dialog_info( title='Default title', message='Default message', button_text='Close'){
