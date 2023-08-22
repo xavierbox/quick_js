@@ -5,11 +5,11 @@ function add( a,b ){
 	alert('adding a + b' ); 
 }
 
-function show_alert_dioalog( message = 'Default message' ){
-	alert( message + 'ddddd');
+function ashow_alert_dioalog( message = 'Default message' ){
+	alert( message + 'local');
 }
 
-function show_dialog_info( title='Default title', message='Default message', button_text='Close'){
+function ashow_dialog_info( title='Default title' + 'local', message='Default message', button_text='Close'){
 
  let body = document.getElementsByTagName('body')[0]
 
