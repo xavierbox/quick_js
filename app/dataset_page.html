@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> {{data[ 'title'] }}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
+ 
+<!-- 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+-->
+   
+ 
+<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script> 
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
+<!--
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+-->
+
+ 
+
+   <script type="text/javascript" src = "./utils.js"></script>
+   <script type="text/javascript" src = "./css/components/ui.js"></script>
+   <script type="text/javascript" src = "./bs/dialogs/show_alert_dialog.js"></script>
+ 
+<!--
+<script src="https://cdn.jsdelivr.net/gh/xavierbox/quick_js/dialogs/show_alert_dialog.js"></script>
+-->
+
+<script src="https://raw.githack.com/xavierbox/quick_js/main/bs/dialogs/show_alert_dialog.js"></script>
+
+
+<style>
+body {margin: 5px 25px 5px 25px;
+padding-top: 30px;
+}
+ 
+.card { box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);}
+.card:hover {box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);}
+label.bold { font-weight:bold; }
+
+.hidden{
+display:none;
+}
+
+/* Add Zoom Animation */
+.animate {-webkit-animation: animatezoom 0.6s;animation: animatezoom 0.6s}
+@-webkit-keyframes animatezoom {from {-webkit-transform: scale(0)}to {-webkit-transform: scale(1)}}
+@keyframes animatezoom {from {transform: scale(0)} to {transform: scale(1)}}
+
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 80%; /* Full width */
+  height: 80%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  padding: 25px;
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.bordered{ border: 1px solid lightgrey;  } 
+
+
+.button {
+  margin: 2px;
+  padding: 5px 10px;
+  text-align: center; 
+  background-color: white;
+  border:1px solid lightgrey;  
+  border-radius: 5px;
+}
+.button:hover {border: 1px solid grey;    }
+
+.button:active {
+  box-shadow: 0 2px #666;
+  transform: translateY(2px); 
+}
+
+.icon_link{ 
+vertical-align: middle;
+float: right;
+cursor: pointer;
+}
+
+.caret{padding:5px;
+vertical-align: middle;
+}
+
+.caret:hover{
+ padding:4px;
+ border:1px solid lightgrey; 
+}
+</style>
+
+</head>
+ 
+ 
+ 
+
+ 
+<body>
+
+<!--dataset page -->
+<div class="container-fluid" id='datasets-page'>
+	 <!-- header -->
+	 <!-- table  + fetch button -->
+	 <!-- modal dialog to load data -->
+	 <div class="modal" id='modal-form'>
+	 
+	 <!--
+		<form id='upload-form' class='form card modal-content animate nohidden'>
+		 
+		  <div  class="form-group">
+		  <h3>   New dataset  </h3>
+		  </div>
+		  <hr>
+		  
+		  <div class='form-group'>
+		  <label class='bold ' for='dataset_name_entry'>Dataset name</label>
+		  </div>
+		  
+		  <div  class="form-group">
+		  <input type='text' class="form-control" style="font-style:italic" id='dataset_name_entry' placeholder='Enter a name for the new dataset'>
+		  <input type="checkbox" id='overwrite' checked=True> <i>Overwrite if a dataset with the same name exists</i>
+		  </div>
+		  
+		  <div class='form-group'>
+		  <label class='bold'  for='injectors_file'>Injectors</label><input type="file" class="form-control" id="injectors_file" />
+		  </div>
+		  <div class='form-group'><label class='bold' for='producers_file'>Producers</label><input type="file" class="form-control" id="producers_file" /></div>
+		  <div class='form-group'><label class='bold'  for='locations_file'>Locations</label><input type="file" class="form-control" id="locations_file" /></div>
+		  <hr>
+		  <div>
+		  <button id='start_upload_button' style="margin:5px; float:right" 
+		  class='btn btn-primary' onclick="event.preventDefault();">Upload </button>
+		  <button id='cancel_upload_button' style="margin:5px; float:right" 
+		  class='btn btn-danger'onclick="event.preventDefault(); ">Cancel </button>
+		  </div>
+		 
+		</form>
+	 -->
+
+	</div>
+	  
+</div>
+	
+<!--
+<div class="container-fluid" id='datasets-page1'>
+
+  <div class="row">
+    <div class="col-2"><h3> Datasets </h3></div>	
+	<div class="col-1">
+	  <a id='toggle_table_view'
+	   onClick="(function(e){
+		element= e.target;
+		if ( element.classList.contains('fa-caret-up')){
+			element.classList.remove('fa-caret-up')
+			element.classList.add('fa-caret-down')
+			}
+		else{
+			element.classList.add('fa-caret-up')
+			element.classList.remove('fa-caret-down')
+			}
+	})(arguments[0]);return false;"><i class="fa fa-caret-up caret"></i>
+	</a>
+	
+	</div>
+	<div class="col">
+	
+	<a  style="float: right; max-height:35px"   id='new_dataset_button'>
+	<i  style="color:green" class="fa fa-plus-circle">
+	</i> New 
+	</a>
+	
+    </div>
+  </div>
+  <hr>
+  
+   
+  
+  <div  class="col-12">
+  <div class="row" id='dataset-list=container'></div>
+  <button  style="float: right; " type="abutton" id='fetchdataset_button' 
+  class = 'button  ashadow-none aabordered'  >
+  <i style="color:darkblue" class="fa fa-cloud-download"></i> Load </button>
+  </div>
+
+
+</div>
+
+
+ <br>
+ <div id='test'>
+ <div>
+ <br>
+ 
+ 
+-->
+ 
+  
+
+ 
+
+
+  
+</body>
+
+<script>
+/*
+		let table_data = get_table_data(); //just example data 
+		let example_table = ui.table('table_stuff', table_data,
+								  {class :"table aaaatable-dark atable-striped table-bordered table-hover"}, //table attrs 
+								  {class : "btn-primary" });                                 //header attrs
+								  
+							  
+		let list = document.getElementById('dataset-list=container');
+		ui.addChildren( list, example_table)
+		*/
+	
+	function toggle_hidden(element, class_name='hidden') {
+            //this line below should work but...I have seen thats not always the case
+            //element.classList.toggle('hidden');
+            if (element.classList.contains(class_name)) element.classList.remove(class_name);
+            else element.classList.add( class_name)
+	}
+
+/*
+	function generate_dataset_page(){
+		return;
+	    document.getElementById('fetchdataset_button').addEventListener('click', (evt) =>{
+		//toggle_hidden(document.getElementById('fetchdataset_button'),'shadow-none');
+		});
+	
+		let table_data = get_table_data(); //just example data 
+		let example_table = ui.table('table_stuff', table_data,
+								  {class :"table aaaatable-dark atable-striped table-bordered table-hover"}, //table attrs 
+								  {class : "btn-primary" });                                 //header attrs
+								  
+							  
+		let list = document.getElementById('dataset-list=container');
+		ui.addChildren( list, example_table)
+		
+		  document.getElementById('new_dataset_button').addEventListener('click', (evt) =>{
+		  //toggle_hidden( document.getElementById('upload-form'));
+		  //toggle_hidden( document.getElementById('new_dataset_button'),'shadow-none');
+		   document.getElementById("modal-form").style.display = "block";
+		  });
+		  
+		  document.getElementById('cancel_upload_button').addEventListener('click', (evt) =>
+		  {document.getElementById("modal-form").style.display = "none";});
+		  
+		  document.getElementById('start_upload_button').addEventListener('click', (evt) =>
+		  {
+			  alert('clicked upload');
+			  let locations_file = document.getElementById('locations_file').files[0];
+			  let injectors_file = document.getElementById('injectors_file').files[0];
+			  let producers_file = document.getElementById('producers_file').files[0];
+			  let dataset_name =   document.getElementById('dataset_name_entry').value;
+			  let overwrite_dataset =   document.getElementById('overwrite').checked;
+			  console.log( dataset_name,producers_file,overwrite_dataset );
+		  });
+		  
+		  
+
+		  
+	  }
+	
+	document.getElementById('toggle_table_view').addEventListener('click', (evt)=>{
+		  let element = document.getElementById('dataset-list=container');
+		  toggle_hidden(element, class_name='hidden');
+		  
+		  element = document.getElementById('fetchdataset_button');
+		  toggle_hidden(element, class_name='hidden');
+		  
+		  
+		  });
+		  
+	//generate_dataset_page();
+*/
+	
+	
+	let dataset_page = document.getElementById('datasets-page');//ui.div( id= 'datasets_page', children = [], attributes ={class:"container-fluid" })
+	
+		//the top part  
+		let new_dataset_button = ui.icon_link('new_dataset_button', ' New ', {class: "fa fa-plus-circle"}, {color:"green"} );
+		let columns = [ui.column(id = undefined, children = [ui.h3('dataset_header', 'Datasets')]),//, size = 3),
+					   ui.column(id = undefined, children = [ui.caret('toggle_table_view')]),//, size = 1),
+					   ui.column(id = undefined, children = [new_dataset_button]),
+					  ] 
+		let header_row = ui.row( id = 'dataset_header_row', children = columns ); 
+		
+		
+		//the table part 
+		let dataset_table = ui.table('datasets_table', get_table_data(),
+									  {class :"table table-dark table-striped table-bordered table-hover"},  
+									  {class : "btn-primary" });  
+									  
+		let fetch_button = ui.button('fetch_dataset_button', ' Fetch ', children=[ui.icon( attributes = {class:"fa fa-cloud-download"}, style = {color:"darkblue"})],{class: 'button'} );	
+		ui.setStyle( fetch_button, {float:'right'});
+		
+		let table_row = ui.row('table_row_container', children = [dataset_table]  );
+		let load_button_row = ui.div('load_button_row', children = [fetch_button]  );
+		let table_container = ui.div('table_section_container', children=[table_row,load_button_row]);
+		
+	ui.addChildren( dataset_page, [ header_row, ui.hr(), table_container, ui.br() ] );
+ 
+	ui.addChildren( document.getElementsByTagName('body')[0], dataset_page );
+	
+	
+ /*
+          <div class='form-group'>
+		  <label class='bold ' for='dataset_name_entry'>Dataset name</label>
+		  </div>
+		  
+		  <div  class="form-group">
+		  <input type='text' class="form-control" style="font-style:italic" id='dataset_name_entry' placeholder='Enter a name for the new dataset'>
+		  <input type="checkbox" id='overwrite' checked=True> <i>Overwrite if a dataset with the same name exists</i>
+		  </div>
+		  
+ */
+    /////////////////////////////////////////////
+	/////////////// upload form /////////////////
+	/////////////////////////////////////////////
+	let label = ui.label('Dataset name', {class:'bold', for:'dataset_name_input'},{fontWeight:'bold'} );	 
+	let name_input = ui.text_input('dataset_name_input', attributes = {class:'form-control', placeholder:'Enter a name'},style = { fontStyle: "italic" });
+	let check = ui.checkbox('form-sss', 'Overwrite same-name dataset if any', checked = true  );
+	let div1= ui.div('i1',[ label,name_input, check ], {class:'form-group' } )
+	
+	let form = ui.element('form-upload', 'form', {class :'form card modal-content animate nohidden'} );
+	ui.addChildren( form, [div1] )
+	
+	let file_sect1 = ui.div('', [ui.label('Locations',{class:'bold', for:'locations_file'},{fontWeight:'bold', marginTop:'5px'}),
+	                             ui.file_input('locations_file',{class:"form-control"})
+								], {class:'form-group' });
+	let file_sect2 = ui.div('', [ui.label('Injectors',{class:'bold', for:'injectors_file'},{fontWeight:'bold', marginTop:'5px'}),
+	                             ui.file_input('injectors_file',{class:"form-control"})
+								], {class:'form-group' });
+	let file_sect3 = ui.div('', [ui.label('Producers',{class:'bold', for:'producers_file'},{fontWeight:'bold', marginTop:'5px'}),
+	                             ui.file_input('producers_file',{class:"form-control"})
+								], {class:'form-group' });
+	
+	let div2= ui.div('i2',[ file_sect1,file_sect2 ], {class:'form-group' } )
+	ui.addChildren( form, [file_sect1,file_sect2,file_sect3] )
+	
+	//buttons
+	let form_buttons_container = ui.div('form_buttons_container',
+	[ ui.button('start_upload_button', 'Upload', children=[], attributes = {class :'btn btn-primary'}, style={ margin:'5px', float:"right"} ),
+  	  ui.button('cancel_upload_button', 'Cancel', children=[], attributes = {class:'btn btn-danger'}, style={ margin:'5px', float:"right"} ),
+	]);
+	ui.addChildren( form, [ui.hr(), form_buttons_container] )
+	
+	let modal_upload_dialog = document.getElementById('modal-form');
+	ui.addChildren(  modal_upload_dialog, form  );
+	
+	
+	
+	//connect the events 
+	
+	//toggle visibility of the table 
+	document.getElementById('toggle_table_view').addEventListener('click', (evt)=>{
+	
+		  
+		  let element = document.getElementById('table_section_container');
+		  toggle_hidden(element, class_name='hidden');
+		  //element = document.getElementById('fetchdataset_button');
+		  //toggle_hidden(element, class_name='hidden');
+		  });
+	
+	//modal form to upload new data 
+	document.getElementById('new_dataset_button').addEventListener('click', (evt) =>
+	{document.getElementById("modal-form").style.display = "block";});
+		  
+	document.getElementById('cancel_upload_button').addEventListener('click', (evt) =>
+	{document.getElementById("modal-form").style.display = "none";});
+		  
+		  
+		  
+	
+</script>
+
+
+</html>

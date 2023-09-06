@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Simulation parameters</h1>
+
+<form action="/action_page.php">
+  <h3> Training time </h3>
+  <label for="start">Start:</label>
+  <input type="date" id="start" name="train_start">
+  <label for="end">Start:</label>
+  <input type="date" id="end" name="train_end">
+  
+  <h3>CRM model </h3> 
+  <select name="cars" id="cars">
+    <option value="crm_p">CRM-Tank</option>
+    <option value="crm_ip">CRM-P</option>
+    <option value="des">CRM-IP</option>
+  </select>
+  
+  <h3> Integrated </h3>
+  <input type="checkbox" id="vehicle1" name="integrated" value="True">
+  <label for="vehicle1"> Integrated CRM </label><br>
+
+
+  <hr> 
+  <input type="submit">
+</form>
+
+</body>
+</html>

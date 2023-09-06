@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title> {{data[ 'title'] }}</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<!-- 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+-->
+
+
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"
+		integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+
+
+	<!--
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+-->
+
+
+	<script type="text/javascript" src="../static/utils.js"></script>
+	<script type="text/javascript" src="../static/css/components/ui.js"></script>
+	<script type="text/javascript" src="../static/dataClasses.js"></script>
+
+
+	<!--
+<script src="https://cdn.jsdelivr.net/gh/xavierbox/quick_js/dialogs/show_alert_dialog.js"></script>
+<script src="https://raw.githack.com/xavierbox/quick_js/main/bs/dialogs/show_alert_dialog.js"></script>
+-->
+
+
+
+	<style>
+		body {
+			margin: 5px 25px 5px 25px;
+			padding-top: 30px;
+		}
+
+		.card {
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+		}
+
+		.card:hover {
+			box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+		}
+
+		label.bold {
+			font-weight: bold;
+		}
+
+		.hidden {
+			display: none;
+		}
+
+		/* Add Zoom Animation */
+		.animate {
+			-webkit-animation: animatezoom 0.6s;
+			animation: animatezoom 0.6s
+		}
+
+		@-webkit-keyframes animatezoom {
+			from {
+				-webkit-transform: scale(0)
+			}
+
+			to {
+				-webkit-transform: scale(1)
+			}
+		}
+
+		@keyframes animatezoom {
+			from {
+				transform: scale(0)
+			}
+
+			to {
+				transform: scale(1)
+			}
+		}
+
+
+		.modal {
+			display: none;
+			/* Hidden by default */
+			position: fixed;
+			/* Stay in place */
+			z-index: 1;
+			/* Sit on top */
+			left: 0;
+			top: 0;
+			width: 80%;
+			/* Full width */
+			height: 80%;
+			/* Full height */
+			overflow: auto;
+			/* Enable scroll if needed */
+			background-color: rgb(0, 0, 0);
+			/* Fallback color */
+			background-color: rgba(0, 0, 0, 0.4);
+			/* Black w/ opacity */
+			padding-top: 60px;
+		}
+
+		/* Modal Content/Box */
+		.modal-content {
+			padding: 25px;
+			background-color: #fefefe;
+			margin: 5% auto 15% auto;
+			/* 5% from the top, 15% from the bottom and centered */
+			border: 1px solid #888;
+			width: 80%;
+			/* Could be more or less, depending on screen size */
+		}
+
+		.bordered {
+			border: 1px solid lightgrey;
+		}
+
+
+		.button {
+			margin: 2px;
+			padding: 10px 10px;
+			text-align: center;
+			background-color: white;
+			border: 1px solid lightgrey;
+			border-radius: 5px;
+		}
+
+		.button:hover {
+			border: 1px solid grey;
+		}
+
+		.button:active {
+			box-shadow: 0 2px #666;
+			transform: translateY(2px);
+		}
+
+		.icon_button {
+			background-color: transparent;
+			border: none;
+			vertical-align: middle;
+			float: right;
+			cursor: pointer;
+			margin: 10px;
+			font-size: 0.99em;
+			font-style: italic;
+		}
+
+		.icon_button:hover {
+			border-bottom: 1px solid grey;
+		}
+
+
+		.button_link {
+			background-color: transparent;
+			border: none;
+			vertical-align: middle;
+			float: right;
+			cursor: pointer;
+			margin: 10px;
+			font-size: 0.6em;
+			font-style: italic;
+		}
+
+		.button_link:hover {
+			border-bottom: 1px solid grey;
+		}
+
+		.color_icon {
+			color: green;
+		}
+
+		.caret {
+			margin-left: 10px;
+			padding: 5px;
+			vertical-align: middle;
+			border: none;
+			background-color: transparent;
+		}
+
+		.caret:hover {
+			padding: 4px;
+			border: 1px solid lightgrey;
+		}
+
+		tr.selected {
+			border: 3px solid lightgrey;
+		}
+
+		.danger {
+			background-color: #ffdddd;
+			border-left: 8px solid #f44336;
+			padding: 5px 5px;
+			margin-bottom: 5px;
+			min-height: 30px;
+		}
+
+		.danger:hover {
+			border-left: 12px solid #f44336;
+		}
+
+		.error {
+			background-color: #ffdddd;
+			border-left: 8px solid #f44336;
+			padding: 5px 5px;
+			margin-bottom: 5px;
+			min-height: 30px;
+		}
+
+		.error:hover {
+			border-left: 12px solid #f44336;
+		}
+
+		.success {
+			background-color: #ddffdd;
+			border-left: 6px solid #04AA6D;
+			padding: 5px 5px;
+			margin-bottom: 5px;
+			min-height: 30px;
+		}
+
+		.success:hover {
+			border-left: 12px solid #04AA6D;
+		}
+
+		.ok {
+			background-color: #ddffdd;
+			border-left: 6px solid #04AA6D;
+			padding: 5px 5px;
+			margin-bottom: 5px;
+			min-height: 30px;
+		}
+
+		.ok:hover {
+			border-left: 12px solid #04AA6D;
+		}
+
+		.info {
+			background-color: #e7f3fe;
+			border-left: 8px solid #2196F3;
+			padding: 5px 5px;
+			margin-bottom: 5px;
+			min-height: 30px;
+		}
+
+		.info:hover {
+			border-left: 12px solid #2196F3;
+		}
+
+		.warning {
+			background-color: #ffffcc;
+			border-left: 6px solid #ffeb3b;
+			padding: 5px 5px;
+			margin-bottom: 5px;
+			min-height: 30px;
+		}
+
+		.warning:hover {
+			border-left: 12px solid #ffeb3b;
+		}
+
+		.alert-box {
+			border: 1px solid lightgrey;
+			border-left: 8px solid;
+			padding: 5px 5px;
+			margin-bottom: 5px;
+			min-height: 30px;
+		}
+
+		.alert-box:hover {
+			border-left: 12px solid;
+		}
+	</style>
+
+
+
+</head>
+
+
+
+
+<body>
+
+
+
+
+	<button id="datasets_page_button">Datasets</button>
+	<button id="modelling_page_button">Modelling</button>
+	<button id="visualization_page_button">Visualization</button>
+
+	<!--
+<button id="xx-new_dataset_button">New dataset</button>
+<button id="xx-datasets_lists_button">Datasets </button> 
+<button id="xx-new_simulation_button">New sector simulation</button>
+<button id="xx-simulations_lists_button">Simulation list </button>
+
+
+<button id="sector_modelling_button">Secror modelling</button>
+<button id="visualization_button">Visualization </button>
+<button id="xx1">Accept</button>
+<button id="xx2">Reject</button>
+<button id="xx3">Reject</button>
+-->
+
+
+
+	<div id='datasets_page' class="animate page container-fluid">
+
+		<!--header-->
+		<div id='datasets_header'></div>
+
+		<!--upload form-->
+		<div id="form-upload" class="card row component 88form aacard 88modal-content n-animate">
+			<h5><br>New dataset <button style="float:right" , class='caret fa fa-caret-down'></button>
+				<hr>
+			</h5>
+			<div class="form-group" style="margin-bottom: 25px;"><label class="bold" for="dataset_name_input"
+					style="font-weight: bold;">Dataset name</label><input id="dataset_name_input" class="form-control"
+					placeholder="Enter a name" type="text" style="font-style: italic;"><input id="overwrite_dataset"
+					type="checkbox" checked="true"><label for="overwrite_dataset" style="padding-left: 5px"> Overwrite
+					same-name dataset if any</label></div>
+			<div><label class="bold" for="injectors_file"
+					style="font-weight: bold; margin-top: 5px;">Injectors</label><input id="injectors_file"
+					class="form-control" type="file"></div>
+			<div><label class="bold" for="producers_file"
+					style="font-weight: bold; margin-top: 5px;">Producers</label><input id="producers_file"
+					class="form-control" type="file"></div>
+			<div><label class="bold" for="locations_file"
+					style="font-weight: bold; margin-top: 5px;">Locations</label><input id="locations_file"
+					class="form-control" type="file"></div>
+			<div>
+				<p></p>
+				<progress id="data_upload_progress_bar" class="hidden" value="0" min="0" max="100"></progress>
+				<button id="start_upload_button" class="btn btn-primary" text="Upload"
+					style="margin: 5px; xxfloat: right;">Upload</button>
+				<button id="cancel_upload_button" class="btn btn-danger" text="Cancel"
+					style="margin: 5px; xxfloat: right;">Cancel</button>
+			</div>
+			<div>
+				<p></p>
+			</div>
+		</div>
+
+		<!-- data report -->
+		<div class="no-animate row component nomodal animate nofade card" id="data_report_container">
+
+			<h5> <br> Pre-processing <button style="float:right" , class='caret fa fa-caret-down'></button>
+				<hr>
+			</h5>
+
+			<p id="temporal_dataset_name">gfgkkghfkh</p>
+			<div id="data_report">
+				<div>
+					<div class="ok">
+						<p>Basic pre-processing (column names, dates formatting, data types and acronysms) <strong
+								style="float:right">ok</strong></p>
+					</div>
+					<div class="error">
+						<p>Checked for minimum columns required <strong style="float:right">error</strong></p>
+					</div>
+					<div class="warning">
+						<p>Locations for all wells checked <strong style="float:right">warning</strong></p>
+					</div>
+					<div class="info">
+						<p>info om Locations for all wells checked <strong style="float:right">info</strong></p>
+					</div>
+				</div>
+			</div>
+			<div id="accept_dataset_container" class="xx-component">
+				<br>
+				<h5 style="padding:20px;border:2px solid blue">The dataset can be accepted
+					<button id="accept_temporal_dataset" class="btn btn-primary" text="Accept">Proceed</button>
+				</h5>
+			</div>
+			<div id="dont_accept_dataset_container" class="xx-component">
+				<br>
+				<h5 style="padding:20px;border:2px solid red">The dataset is not acceptable</h5>
+			</div>
+
+		</div>
+
+		<!-- data list-->
+		<div class="row component hidden" id="datasets_list_container">
+			here goes a table
+		</div>
+
+
+	</div>
+
+
+	<div id='modelling_page' class="animate hidden page container-fluid">
+
+		<!--header-->
+		<div id='simulation_header'></div>
+		<h3> CRM simulation </h3>
+
+
+		<div class='card row '>
+
+
+			<div class="form-group" style="margin-bottom: 5px;"><label class="bold" for="simulation_name"
+					style="font-weight: bold;">Simulation name</label>
+				<input id="simulation_name" class="form-control" placeholder="Enter a name" type="text"
+					style="font-style: italic;">
+			</div>
+
+			<div class="form-group" style="margin-bottom: 5px;"><label class="bold" for="crm_model_input"
+					style="font-weight: bold;">CRM model</label>
+				<select class='form-control' name="crm_model_input" id="crm_model_input">
+					<option value="crm_p">CRM-P</option>
+					<option value="crm_ip">CRM-IP</option>
+					<option value="crm_tank">CRM-Tank</option>
+				</select>
+			</div>
+
+			<div class="form-group" style="margin-bottom: 5px;"><label class="bold" for="balancing_input"
+					style="font-weight: bold;">Balancing</label>
+				<select class='form-control' name="balancing_input" id="balancing_input">
+					<option value="none">None</option>
+					<option value="quick">Quick</option>
+					<option value="full">Full</option>
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="overwrite_dataset" style="padding-left: 5px"> Attempt to run multi-core simulation</label>
+				<input id="overwrite_dataset" type="checkbox" checked="true">
+			</div>
+
+			<p></p>
+			<div class="form-group" style="margin-bottom: 5px;">
+				<label class="bold" for="double-range-container" style="font-weight: bold;">Training time</label>
+				<p></p>
+				<div id="double-range-container"></div>
+				<p></p>
+			</div>
+			<script>
+				let e = document.getElementById('double-range-container');
+				let slider = ui.double_range_slider({ id: 'training_time_slider' });
+				ui.addChildren(e, slider)
+
+				slider.addEventListener('clicked', (evt) => {
+					console.log(evt);
+				});
+
+			</script>
+
+<div class="form-group"><br><button id="start_upload_button" class="btn btn-primary" text="Upload">Run</button></div>
+		<br>
+
+		</div>
+
+		
+
+	</div>
+
+
+ 
+
+	<div id='forecast-component' class="animate card container-fluid component">
+
+		<!--header-->
+		<h3>Forecast</h3>
+		<div class="form-group">
+			<label class="bold form-label" for="stored_simulations" style="font-weight: bold;">Simulation case</label>
+			<div class="input-group ">
+				<select class='form-control ' name="stored_simulations" id="stored_simulations">
+					<option value="volvo">Volvo</option>
+					<option value="saab">Saab</option>
+					<option value="mercedes">Mercedes</option>
+					<option value="audi">Audi</option>
+				</select>
+				<span class="input-group-text" id="basic-addon2"><a class="bstn "><i
+							class="fa fa-refresh"></i></a></span>
+			</div>
+		</div>
+
+
+
+
+		<div class="form-group" style="margin-bottom: 5px;"><label class="bold" for="simulation_name"
+				style="font-weight: bold;">Forecast case name</label>
+			<input id="simulation_name" class="form-control" placeholder="Enter a name" type="text"
+				style="font-style: italic;"></div>
+
+		<div class="form-group"><label class="bold" for="producers_file"
+				style="font-weight: bold; margin-top: 5px;">Producers pressure(optional)</label><input
+				id="producers_pressure_forecast" class="form-control" type="file"></div>
+
+		<div class="form-group"><label class="bold" for="locations_file"
+				style="font-weight: bold; margin-top: 5px;">Water injection</label><input id="water_injection_forecast"
+				class="form-control" type="file"></div>
+
+		<div class="form-group"><br><button id="start_upload_button" class="btn btn-primary" text="Upload">Run</button></div>
+		<br>
+
+ 
+  
+	</div>
+
+		
+ 
+ 
+	<div id='koval-component' class="animate card container-fluid component">
+
+		<!--header-->
+		<h3>Water fraction model</h3>
+		<div class="form-group">
+			<label class="bold form-label" for="stored_simulations" style="font-weight: bold;">Simulation case</label>
+			<div class="input-group ">
+				<select class='form-control ' name="stored_simulations" id="stored_simulations">
+					<option value="volvo">Volvo</option>
+					<option value="saab">Saab</option>
+					<option value="mercedes">Mercedes</option>
+					<option value="audi">Audi</option>
+				</select>
+				<span class="input-group-text" id="basic-addon2"><a class="bstn "><i
+							class="fa fa-refresh"></i></a></span>
+			</div>
+		</div>
+
+		<div class='form-group container-fluid'>	 
+			<label class="bold"> Koval constant </label><br>
+		 	<span><label class="form-label">2442</label> <input class='form-input' type="range"/> <label class="form-label">5455</label></span>
+		  </div>
+
+		<div class='form-group container-fluid'>	 
+			<label class="bold"> Pore volumne </label><br>
+		 	<span><label class="form-label">2442</label> <input class='form-input' type="range"/> <label class="form-label">5455</label></span>
+		  </div>
+		
+		  <div class='form-group container-fluid'>	 
+			<label class="bold"> Wo  </label><br>
+		 	<span><label class="form-label">2442</label> <input class='form-input' type="range"/> <label class="form-label">5455</label></span>
+		  </div>
+		  
+		  <div class="form-group"><br><button id="start_upload_button" class="btn btn-primary" text="Upload">Run</button></div>
+		  <br>
+	</div>
+ 
+
+
+
+
+	<div id='visualization_page' class="hidden page container-fluid">
+		<!--header-->
+		<div id='visualizations_header'></div>
+
+	</div>
+
+
+	<script>
+
+
+		display_acceptable_dataset_component = function (value) {
+
+			if (value == true) {
+				document.getElementById('accept_dataset_container').classList.remove('hidden');
+				document.getElementById('dont_accept_dataset_container').classList.add('hidden');
+			}
+			else {
+				document.getElementById('accept_dataset_container').classList.add('hidden');
+				document.getElementById('dont_accept_dataset_container').classList.remove('hidden');
+			}
+		}
+		hide_all_pages = function () { Array.from(document.getElementsByClassName('page')).forEach(element => { element.classList.add('hidden') }); }
+		hide_all_pages_but = function (id) { hide_all_pages(); document.getElementById(id).classList.remove('hidden') }
+		hide_child_components_but = function (parent_id, visible_ids) {
+
+			let page = document.getElementById(parent_id);
+			let components = page.getElementsByClassName('component');
+
+			console.log(page);
+			console.log(components);
+
+
+			let ids = new Array();
+			if (Array.isArray(visible_ids)) ids = visible_ids;
+			else ids.push(visible_ids);
+
+			Array.from(components).forEach((component) => {
+				if (ids.includes(component.id)) component.classList.remove('hidden');
+				else component.classList.add('hidden');
+			});
+		}
+
+		let initialize = function () {
+
+			create_page_header('datasets_header', 'Datasets', 'new_dataset_button', 'list_datasets_button', 'New', 'List')
+			create_page_header('simulation_header', 'Simulations', 'new_simulation_button', 'list_simulations_button', 'New', 'List')
+			create_page_header('visualizations_header', 'Visualization', 'new_visualization_button', 'list_visualization_button', 'New', 'List')
+
+
+			document.getElementById('datasets_page_button').addEventListener("click", (evt) => { hide_all_pages_but('datasets_page'); });
+			document.getElementById('modelling_page_button').addEventListener("click", (evt) => { hide_all_pages_but('modelling_page'); });
+			document.getElementById('visualization_page_button').addEventListener("click", (evt) => { hide_all_pages_but('visualization_page'); });
+
+
+			document.getElementById('new_dataset_button').addEventListener("click", (evt) => {
+				hide_child_components_but('datasets_page', 'form-upload');
+				Array.from(document.querySelectorAll('#form-upload div input')).forEach(singleInput => singleInput.value = '');
+
+			});
+
+			document.getElementById('list_datasets_button').addEventListener("click", (evt) => {
+				hide_child_components_but('datasets_page', 'datasets_list_container');
+
+			});
+
+			document.getElementById('start_upload_button').addEventListener("click", (evt) => {
+				hide_child_components_but('datasets_page', ['form-upload', 'data_report_container']);
+				/*
+				let main_container = document.getElementById( 'data_report_container')
+				main_container.classList.remove('hidden');
+				main_container.getElementById( 'dont_accept_dataset_container').classList.remove('hidden');
+				main_container.getElementById( 'accept_dataset_container').classList.remove('hidden');
+				*/
+
+
+			});
+
+
+		}
+
+		initialize()
+
+		/*
+		display_preprocessing_component = function(data){
+			if(data==false)  { document.getElementById('data_report_container').classList.add('hidden'); return; }
+			document.getE
+			lementById('data_report_container').classList.remove('hidden');
+		}
+		hide_preprocessing_component = function(){display_preprocessing_component(false);}
+		document.getElementById('xx1').addEventListener("click", (evt) =>{display_acceptable_dataset_component(true);});
+		document.getElementById('xx2').addEventListener("click", (evt) =>{display_acceptable_dataset_component(false);});
+		document.getElementById('xx3').addEventListener("click", (evt) =>{display_preprocessing_component(false);});
+		document.getElementById('xx1').addEventListener("click", (evt) =>{display_acceptable_dataset_component(true);});
+		document.getElementById('xx2').addEventListener("click", (evt) =>{display_acceptable_dataset_component(false);});
+		document.getElementById('xx3').addEventListener("click", (evt) =>{display_preprocessing_component(false);});
+
+
+			document.getElementById('new_dataset_button').addEventListener("click", (evt) =>
+		{
+			hide_child_components_but('datasets_page','form-upload');
+			Array.from(document.querySelectorAll('#form-upload div input')).forEach(singleInput => singleInput.value = '');
+
+		});
+
+		document.getElementById('datasets_lists_button').addEventListener("click", (evt) =>
+		{
+			hide_child_components_but('datasets_page','datasets_list_container');
+
+		});
+
+
+
+
+		//*/
+
+
+
+
+
+
+
+	//initialize new-datasets-page 
+
+
+
+
+
+	</script>
+
+	<!--new dataset page -->
+	<div class="container-fluid page hidden animate" id='fnew_dataset_page'>
+
+		<div id='datasets_header'></div>
+
+		<!-- modal dialog to load data -->
+		<div class="container-fluid nomodal 88animate nofade" id='data_upload_modal_form'></div>
+
+		<!-- data report -->
+		<div class="nomodal n-_animate nofade 88hidden" id='data_report_container'>
+			<h3> Pre-processing </h3>
+			<div id='data_report'></div>
+
+			<h3> Quality checks </h3>
+			<div id='data_quality_report'></div>
+
+			<div>
+				<hr>
+				<button style="float:right" , class="btn btn-primary">Accept</button>
+			</div>
+			<br>
+			<hr>
+		</div>
+
+	</div>
+
+	<div id='datasets_list_container' class='hidden container-fluid page'>
+
+
+		<div id='table-tool-bar' style="float:right; margin-right:10px">
+			<button name='refresh' id='refresh_dataset_button' class=" datasets_table_toolbar_button icon_button"><i
+					class="fa fa-refresh" title="Refresh datasets list"></i></button>
+			<button name='load' id='load_dataset_button' class=" datasets_table_toolbar_button icon_button"><i
+					class="fa fa-area-chart" title="Explore selected dataset"></i></button>
+			<button name='download' id='download_dataset_button' class=" datasets_table_toolbar_button icon_button"><i
+					class="fa fa-download" title="Download data"></i></button>
+			<button name='delete' id='deleted_dataset_button' class=" datasets_table_toolbar_button icon_button"><i
+					class="fa fa-trash" title="Delete dataset"></i></button>
+		</div>
+
+
+		<!--table id='datasets_table' -->
+		<div id='datasets_table_container'>
+			this is the table container
+		</div>
+
+
+	</div>
+
+
+
+	<hr>
+	<hr>
+
+</body>
+
+<script>
+
+	function toggle_hidden(element, class_name = 'hidden') {
+		//this line below should work but...I have seen thats not always the case
+		//element.classList.toggle('hidden');
+		if (element.classList.contains(class_name)) element.classList.remove(class_name);
+		else element.classList.add(class_name)
+	}
+
+
+
+	//let dataModel     = new DataModel();
+	//let dataView      = new DataPageView();
+	//dataView.createDataPage();
+
+	//let dataViewModel = new DataViewModel( dataModel, dataView );
+
+
+
+
+	/*
+		function generate_dataset_page(){
+			return;
+			document.getElementById('fetchdataset_button').addEventListener('click', (evt) =>{
+			//toggle_hidden(document.getElementById('fetchdataset_button'),'shadow-none');
+			});
+		
+			let table_data = get_table_data(); //just example data 
+			let example_table = ui.table('table_stuff', table_data,
+									  {class :"table aaaatable-dark atable-striped table-bordered table-hover"}, //table attrs 
+									  {class : "btn-primary" });                                 //header attrs
+									  
+								  
+			let list = document.getElementById('dataset-list=container');
+			ui.addChildren( list, example_table)
+			
+			  document.getElementById('new_dataset_button').addEventListener('click', (evt) =>{
+			  //toggle_hidden( document.getElementById('upload-form'));
+			  //toggle_hidden( document.getElementById('new_dataset_button'),'shadow-none');
+			   document.getElementById("data_upload_modal_form").style.display = "block";
+			  });
+			  
+			  document.getElementById('cancel_upload_button').addEventListener('click', (evt) =>
+			  {document.getElementById("data_upload_modal_form").style.display = "none";});
+			  
+			  document.getElementById('start_upload_button').addEventListener('click', (evt) =>
+			  {
+				  alert('clicked upload');
+				  let locations_file = document.getElementById('locations_file').files[0];
+				  let injectors_file = document.getElementById('injectors_file').files[0];
+				  let producers_file = document.getElementById('producers_file').files[0];
+				  let dataset_name =   document.getElementById('dataset_name_entry').value;
+				  let overwrite_dataset =   document.getElementById('overwrite').checked;
+				  console.log( dataset_name,producers_file,overwrite_dataset );
+			  });
+			  
+			  
+	
+			  
+		  }
+		
+		document.getElementById('toggle_table_view').addEventListener('click', (evt)=>{
+			  let element = document.getElementById('dataset-list=container');
+			  toggle_hidden(element, class_name='hidden');
+			  
+			  element = document.getElementById('fetchdataset_button');
+			  toggle_hidden(element, class_name='hidden');
+			  
+			  
+			  });
+			  
+		//generate_dataset_page();
+			
+	 
+		//ui.test_item( {id:'optional', children:['a','b','c']}, attributes = {class: "fa fa-plus-circle"}, style = {}  );
+		
+		
+	*/
+
+
+
+
+
+</script>
+
+
+</html>

@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> {{data[ 'title'] }}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
+ 
+<!-- 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+-->
+   
+ 
+<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script> 
+<link  href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
+<!--
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+-->
+
+ 
+<script type="text/javascript" src = "./static/utils.js"></script>
+<script type="text/javascript" src = "./static/css/components/ui.js"></script>
+<script type="text/javascript" src = "./static/bs/dialogs/show_alert_dialog.js"></script>
+
+<!--
+<script src="https://cdn.jsdelivr.net/gh/xavierbox/quick_js/dialogs/show_alert_dialog.js"></script>
+-->
+
+<script src="https://raw.githack.com/xavierbox/quick_js/main/bs/dialogs/show_alert_dialog.js"></script>
+
+
+
+<style>
+body {margin: 5px 25px 5px 25px;
+padding-top: 30px;
+}
+ 
+.card { box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);}
+.card:hover {box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);}
+label.bold { font-weight:bold; }
+
+.hidden{display:none;}
+
+/* Add Zoom Animation */
+.animate {-webkit-animation: animatezoom 0.6s;animation: animatezoom 0.6s}
+@-webkit-keyframes animatezoom {from {-webkit-transform: scale(0)}to {-webkit-transform: scale(1)}}
+@keyframes animatezoom {from {transform: scale(0)} to {transform: scale(1)}}
+
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 80%; /* Full width */
+  height: 80%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  padding: 25px;
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.bordered{ border: 1px solid lightgrey;  } 
+
+
+.button {
+  margin: 2px;
+  padding: 10px 10px;
+  text-align: center; 
+  background-color: white;
+  border:1px solid lightgrey;  
+  border-radius: 5px;
+}
+.button:hover {border: 1px solid grey;    }
+
+.button:active {
+  box-shadow: 0 2px #666;
+  transform: translateY(2px); 
+}
+
+.icon_button{ 
+  background-color: transparent;
+  border:none;
+  vertical-align: middle;
+  float: right;
+  cursor: pointer;
+  margin: 10px;
+  font-size: 0.99em;
+  font-style:italic;
+}
+.icon_button:hover{ border-bottom: 1px solid grey; }
+
+
+.button_link{ 
+  background-color: transparent;
+  border:none;
+  vertical-align: middle;
+  float: right;
+  cursor: pointer;
+  margin: 10px;
+  font-size: 0.6em;
+  font-style:italic;
+}
+.button_link:hover{ border-bottom: 1px solid grey; }
+
+
+.color_icon{ color:green;} 
+
+.caret{
+	margin-left:10px;
+	padding:5px;
+	vertical-align: middle;
+	border:none;
+	background-color: transparent;
+ 
+}
+
+.caret:hover{
+ padding:4px;
+ border:1px solid lightgrey; 
+}
+
+tr.selected{border:3px solid lightgrey;
+}
+</style>
+
+
+<script>
+function getWebAppBackendUrl(url) { return url; } 
+ 
+function get_server(iurl, imethod, idata) {
+
+    return new Promise((resolve, reject) => {
+
+        $.ajax({
+            type: imethod,
+            url: iurl,
+            xhr: function () { return new window.XMLHttpRequest(); },
+
+            processData: false,
+            contentType: false,
+            data: idata,
+            success: function (resp) {
+                console.log('------------------------------success')
+                resolve(resp);
+            },
+            error: function (jqXHR, status, errorThrown) {
+                console.log('------------------------error')
+                reject(errorThrown);
+            }
+        });
+    });//ajax promise
+}
+
+function list_something( url) {
+
+    let end = getWebAppBackendUrl(url);
+    get_server(end, 'get', {})
+        .then((json_response) => {
+            console.log('ok,', json_response)
+            })
+        .catch((error) => {
+            console.log(error);
+            console.log('--do error processing here', error);
+            });
+}
+
+
+</script>
+
+</head>
+ 
+ 
+ 
+
+ 
+<body>
+
+
+<!--dataset page -->
+<div class="container-fluid" id='test_id'>
+	
+		<div id='datasets_header'></div>
+		
+ 		<!-- modal dialog to load data -->
+		<div class="modal hidden" id='data_upload_modal_form'></div>
+ 
+			
+		<div id='datasets_list_container' class='container-fluid'>
+		
+		
+			<div id='table-tool-bar' style="float:right; margin-right:10px">
+			    <button name='refresh' id='refresh_dataset_button'     class=" datasets_table_toolbar_button icon_button"><i class="fa fa-refresh"  title="Refresh datasets list" ></i></button>
+			    <button name='load' id='load_dataset_button'     class=" datasets_table_toolbar_button icon_button"><i class="fa fa-area-chart"  title="Explore selected dataset" ></i></button>
+				<button name='download'  id='download_dataset_button' class=" datasets_table_toolbar_button icon_button"><i class="fa fa-download"  title="Download data"></i></button>
+				<button name='delete'  id='deleted_dataset_button'  class=" datasets_table_toolbar_button icon_button"><i class="fa fa-trash"  title="Delete dataset"></i></button>
+			</div>
+			
+			
+			<!--table id='datasets_table' -->
+			<div id='datasets_table_container'>
+			this is the table container
+
+
+			</div>
+			
+
+		</div>	
+</div>
+
+<hr>
+<hr>
+
+</body>
+
+<script>
+
+	class DataView {
+	
+	createDataPage(){}
+	
+	uploadingFiles(){}
+	
+	
+	}
+
+	class DataModel{
+	
+	}
+	
+	class DataViewModel{
+	
+	constructor( model, view ){
+	;
+	}
+	
+	uploadDataFiles( data ){
+	
+	view.uploadingFiles();
+	console.log('uploadig data');
+	}
+	
+	}
+	
+	let dataViewModel = new DataViewModel();
+
+
+	function toggle_hidden(element, class_name='hidden') {
+            //this line below should work but...I have seen thats not always the case
+            //element.classList.toggle('hidden');
+            if (element.classList.contains(class_name)) element.classList.remove(class_name);
+            else element.classList.add( class_name)
+	}
+
+/*
+	function generate_dataset_page(){
+		return;
+	    document.getElementById('fetchdataset_button').addEventListener('click', (evt) =>{
+		//toggle_hidden(document.getElementById('fetchdataset_button'),'shadow-none');
+		});
+	
+		let table_data = get_table_data(); //just example data 
+		let example_table = ui.table('table_stuff', table_data,
+								  {class :"table aaaatable-dark atable-striped table-bordered table-hover"}, //table attrs 
+								  {class : "btn-primary" });                                 //header attrs
+								  
+							  
+		let list = document.getElementById('dataset-list=container');
+		ui.addChildren( list, example_table)
+		
+		  document.getElementById('new_dataset_button').addEventListener('click', (evt) =>{
+		  //toggle_hidden( document.getElementById('upload-form'));
+		  //toggle_hidden( document.getElementById('new_dataset_button'),'shadow-none');
+		   document.getElementById("data_upload_modal_form").style.display = "block";
+		  });
+		  
+		  document.getElementById('cancel_upload_button').addEventListener('click', (evt) =>
+		  {document.getElementById("data_upload_modal_form").style.display = "none";});
+		  
+		  document.getElementById('start_upload_button').addEventListener('click', (evt) =>
+		  {
+			  alert('clicked upload');
+			  let locations_file = document.getElementById('locations_file').files[0];
+			  let injectors_file = document.getElementById('injectors_file').files[0];
+			  let producers_file = document.getElementById('producers_file').files[0];
+			  let dataset_name =   document.getElementById('dataset_name_entry').value;
+			  let overwrite_dataset =   document.getElementById('overwrite').checked;
+			  console.log( dataset_name,producers_file,overwrite_dataset );
+		  });
+		  
+		  
+
+		  
+	  }
+	
+	document.getElementById('toggle_table_view').addEventListener('click', (evt)=>{
+		  let element = document.getElementById('dataset-list=container');
+		  toggle_hidden(element, class_name='hidden');
+		  
+		  element = document.getElementById('fetchdataset_button');
+		  toggle_hidden(element, class_name='hidden');
+		  
+		  
+		  });
+		  
+	//generate_dataset_page();
+		
+ 
+	//ui.test_item( {id:'optional', children:['a','b','c']}, attributes = {class: "fa fa-plus-circle"}, style = {}  );
+	
+	
+*/
+		
+	let header = ui.h3(text = 'aDatasets ', { children: 
+							[ui.caret( attribues = {id:'toggle_table_view',class: 'caret'}, {}), 
+		                     ui.button(" New ", {id:"new_dataset_button",class: "button_link", children: [ui.icon( {class: "color_icon fa fa-plus-circle"})]}),
+							 ui.button(" Refresh ", {id:"refresh_dataset_button",class: "button_link", children: [ui.icon( {class: "color_icon fa fa-refresh"})]}),
+							]});
+							
+	ui.addChildren( document.getElementById('datasets_header'), [ header ] );//[ui.caret( attribues = {id:'toggle_table_view',class: 'caret'}, {})] );
+	
+
+	//the table part 
+	let table_data = get_table_data()
+
+	let datasets_table = ui.table( table_data,
+								  {id:'datasets_table', class :"table no_table-dark no_table-striped table-bordered table-hover"},  
+								  {class : "btn-primary" });  
+
+	console.log('and the tabel is')
+	console.log( table_data )
+								  					  
+	ui.addChildren( document.getElementById('datasets_table_container'), [ datasets_table ] );
+		
+									
+
+	/*
+	let icon_button = ui.icon_button( 'New ', {class:'fa fa-plus-circle'}, {class:'icon_button'} );
+	ui.addChildren( document.getElementById('test_id'), icon_button );
+	
+
+	
+	let dataset_page = document.getElementById('datasets-page');
+	
+ 
+				
+	//ui.addChildren( document.getElementById('datasets_header'), icons   );
+	
+		//header
+		let header = ui.h3(text = 'Datasets ', { children: 
+							[ui.caret( attribues = {id:'toggle_table_view',class: 'caret'}, {}), 
+		                     //ui.button(" New ", {id:"new_dataset_button",class: "button_link", children: [ui.icon( {class: "color_icon fa fa-plus-circle"})]}),
+							 //ui.button(" Refresh ", {id:"refresh_dataset_button",class: "button_link", children: [ui.icon( {class: "color_icon fa fa-refresh"})]})
+							]});
+
+
+		ui.addChildren( dataset_page, [ header, ui.hr(), icons ] );
+		
+		*/
+		
+		/*
+		
+		//the table part 
+		let dataset_table = ui.table( get_table_data(),
+									{id:'datasets_table', class :"table no_table-dark no_table-striped table-bordered table-hover"},  
+									{class : "btn-primary" });  
+										  
+		
+		let delete_dataset_button = ui.button('Delete ', { id:'delete_dataset_button', class:'button' }, {float:'right'} );	
+		let download_dataset_button = ui.button('Download ', { id:'download_dataset_button', class:'button' }, {float:'right'} );
+		delete_dataset_button.addChildren( ui.icon( {class: "fa fa-trash"},style = { color:"darkblue"} )); 	
+		download_dataset_button.addChildren( ui.icon( {class: "fa fa-download"},style = { color:"darkblue"} ));
+		
+		
+		let fetch_button = ui.button('Fetch ', { id:'fetch_dataset_button', class:'button' }, {float:'right'} );
+		
+		fetch_button.addChildren( ui.icon( {class: "fa fa-cloud-download "},style = { color:"darkblue"} )); 	  
+
+		let table_container = ui.div( {id:'table_section_container', children:[dataset_table,fetch_button,download_dataset_button,delete_dataset_button ]} );
+		ui.addChildren( dataset_page, [ table_container ] );
+		*/
+		
+		
+		
+		
+		/////////////// upload form /////////////////
+		let label = ui.label('Dataset name', {class:'bold', for:'dataset_name_input'},{fontWeight:'bold'} );	 
+		let name_input = ui.text_input(attributes = {'id':'dataset_name_input', class:'form-control', placeholder:'Enter a name'},style = { fontStyle: "italic" });
+		let check = ui.checkbox('Overwrite same-name dataset if any', checked = true, {id:'overwrite_dataset'}  );
+		let div1= ui.create_element( 'div', {children:[ label,name_input, check], class:'form-group' }, style = {marginBottom:'25px'} )
+		
+		let form = ui.create_element( 'form', {id:'form-upload', class :'form aacard modal-content n-animate'}, { paddingTop:'50px'} );
+		ui.addChildren( form, [div1] )
+		
+		
+		let labels   = ['Injectors','Producers','Locations'];
+		for(let n=0,file_ids = ['injectors_file','producers_file','locations_file']; n <labels.length;n++){
+		
+			let section = ui.div({children:[
+			ui.label( text=labels[n],{class:'bold', for:file_ids[n]},{fontWeight:'bold', marginTop:'5px'}),ui.file_input( {id:file_ids[n],class:"form-control"})
+			]},attributes = {class:'form-group' });	
+			ui.addChildren( form, [section] )
+		}
+		
+		//buttons
+		let form_buttons_container = ui.div( {children:
+		[ ui.button('Upload', attributes = {id:'start_upload_button', class :'btn btn-primary'}, style={ margin:'5px', float:"right"} ),
+		  ui.button('Cancel', attributes = {id:'cancel_upload_button',class:'btn btn-danger'}, style={ margin:'5px', float:"right"} ),
+		  ui.br(),ui.br()
+		]});
+		
+        //ui.addChildren( document.getElementById('test_id'), [ form ] );
+		
+		ui.addChildren( form, [ui.hr(), form_buttons_container] )
+		ui.addChildren(  document.getElementById('data_upload_modal_form'), form  );
+	
+	
+ 
+	//connect the events 
+	
+		//toggle visibility of the table 
+		document.getElementById('toggle_table_view').addEventListener('click', (evt)=>{
+			  let element = document.getElementById('datasets_list_container');
+			  toggle_hidden(element, class_name='hidden');
+			  });
+			  
+		//refresh dataset list 
+		document.getElementById('refresh_dataset_button').addEventListener('click', (evt)=>{
+		
+				let element = document.getElementById('datasets_table');
+				console.log('the table is ', element );
+				
+				 get_server('datasets_list', 'get', {})
+				.then( (response) =>{element.setData( response ); })
+				.catch( (error) => { console.log('error');});
+			  });
+			  
+		//datasets table toolbar buttons [delete, download, etc ] 
+		Array.from( document.getElementsByClassName('datasets_table_toolbar_button') ).forEach( (btn)=>{
+		   btn.addEventListener('click', (evt) => {
+		   let table = document.getElementById('datasets_table');
+
+		   if( table.selected < 0 ) {
+		   alert('Click on a dataset row (if any) to select it. Then select the action to perform ');
+		}
+
+		   if( btn.name.toLowerCase().trim()=='delete'){
+			  let text = "Do you want to delete the selected dataset?. Please confirm";
+			  if (confirm(text) == true) 
+			  {console.log('ok was pressed');
+			  }
+			  else return;
+			}
+
+		   });
+		});
+		
+
+		//modal form to upload new data 
+		document.getElementById('new_dataset_button').addEventListener('click', (evt) =>
+		{
+		document.getElementById("data_upload_modal_form").style.display = "block";
+		//toggle_hidden(document.getElementById("data_upload_modal_form"));
+		});
+			  
+	    //cancel upload 
+		document.getElementById('cancel_upload_button').addEventListener('click', (evt) =>{
+		evt.preventDefault();
+		let element = document.getElementById("data_upload_modal_form");
+		element.classList.add('hidden');//.style.display = "none";
+        element.style.display = "none";
+		
+		});
+			  
+			  
+		document.getElementById('start_upload_button').addEventListener('click', (evt) =>
+		{
+			 evt.preventDefault();
+			 //parse the form. if something is missing, then return an error to the user.
+			 //dataset_name_input, overwrite_dataset, 'injectors_file','producers_file','locations_file'
+			
+			 let dataset_name = document.getElementById('dataset_name_input').value.trim();
+			 if ( dataset_name.length === 0) {
+			 alert("The name given to the dataset is an empty string!");
+			 return;
+			 }
+			
+
+			 let overwrite = document.getElementById('overwrite_dataset').checked;
+			 let injectors_file =  document.getElementById('injectors_file').files[0];
+			 let producers_file =  document.getElementById('producers_file').files[0];
+			 let locations_file =  document.getElementById('locations_file').files[0];
+			 
+			 if( (producers_file==undefined) || (injectors_file==undefined)||(locations_file==undefined)){
+			 alert('File(s) missing. Please select a file for injection data, production data and well locations');
+			 return;
+			 }
+			 
+			 let data = {
+			 dataset_name : dataset_name, overwrite:overwrite,
+			 injectors_file : injectors_file,producers_file : producers_file,locations_file : locations_file
+			 };
+			 dataViewModel.uploadDataFiles( data );
+			 
+		});
+			  
+		
+ 
+
+</script>
+
+
+</html>
